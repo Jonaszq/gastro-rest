@@ -26,7 +26,7 @@ export function BrandLogo({ variant = "horizontal", className = "" }: BrandLogoP
   );
 }
 
-function LogoMark({ className = "" }: { className?: string }) {
+export function LogoMark({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 64 64" aria-hidden="true" className={className} fill="none">
       <path

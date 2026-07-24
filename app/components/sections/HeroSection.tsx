@@ -1,9 +1,15 @@
+import Image from "next/image";
+import { LogoMark } from "../BrandLogo";
 import { heroHighlights } from "../site-data";
 
 export function HeroSection() {
   return (
-    <section id="o-nas" className="grid gap-10 py-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:py-10">
-      <div className="max-w-3xl pt-2 lg:pt-8">
+    <section id="o-nas" className="relative grid gap-10 py-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch lg:py-10">
+      <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center px-6">
+        <LogoMark className="select-none text-white/12 drop-shadow-[0_0_80px_rgba(255,255,255,0.22)] h-[22vh] w-[22vh] min-h-[180px] min-w-[180px] max-h-[380px] max-w-[380px]" />
+      </div>
+
+      <div className="relative z-10 max-w-3xl pt-2 lg:pt-8">
         <p data-hero-badge className="mb-4 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] uppercase tracking-[0.35em] text-white/70">
           <span className="h-1.5 w-1.5 rounded-full bg-white" />
           Audyt i optymalizacja gastronomii
@@ -47,64 +53,20 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div data-hero-panel className="relative pt-2 lg:pt-6">
+      <div data-hero-panel className="relative z-10 pt-2 lg:pt-0 lg:self-stretch lg:max-h-[77vh]">
         <div className="absolute inset-0 -z-10 rounded-[2rem] bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.2),transparent_24%),radial-gradient(circle_at_80%_40%,rgba(255,255,255,0.08),transparent_20%),linear-gradient(135deg,rgba(255,255,255,0.09),rgba(255,255,255,0.02))] opacity-90 blur-3xl" />
-        <div className="overflow-hidden rounded-[2rem] border border-white/12 bg-white/4 p-4 shadow-[0_35px_100px_rgba(0,0,0,0.55)] backdrop-blur-xl">
-          <div className="grid gap-4 rounded-[1.5rem] border border-white/8 bg-[linear-gradient(180deg,rgba(20,20,20,0.98),rgba(10,10,10,0.88))] p-5 sm:grid-cols-[1.2fr_0.8fr] sm:p-6">
-            <div className="relative overflow-hidden rounded-[1.4rem] border border-white/8 bg-[linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.03))] p-5">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.15),transparent_28%),linear-gradient(180deg,transparent,rgba(0,0,0,0.42))]" />
-              <div className="relative flex h-full min-h-[260px] flex-col justify-between">
-                <div className="flex items-center justify-between text-xs uppercase tracking-[0.34em] text-white/60">
-                  <span>Audyt 1.0</span>
-                  <span>Kitchen flow</span>
-                </div>
-                <div>
-                  <div className="h-1 w-24 rounded-full bg-white/35" />
-                  <div className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">Start od faktów.</div>
-                  <p className="mt-3 max-w-md text-sm leading-7 text-white/72 sm:text-base">
-                    Analiza 360° pokazuje gdzie tracisz czas, pieniądze i spokój zespołu. Potem przekładamy to na prosty plan naprawy.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    ["Straty", "-18%"],
-                    ["Kolejki", "-24%"],
-                    ["Efekt", "+31%"],
-                  ].map(([label, value]) => (
-                    <div key={label} className="rounded-2xl border border-white/8 bg-black/40 p-3 backdrop-blur">
-                      <div className="text-[11px] uppercase tracking-[0.28em] text-white/45">{label}</div>
-                      <div className="mt-2 text-2xl font-semibold text-white">{value}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-5">
-              <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.03] p-6">
-                <p className="text-[11px] uppercase tracking-[0.35em] text-white/50">Co dostajesz</p>
-                <ul className="mt-5 space-y-4 text-sm leading-7 text-white/74">
-                  <li>• analizę 360° lokalu i procesów</li>
-                  <li>• identyfikację strat i wąskich gardeł</li>
-                  <li>• rekomendacje z priorytetami wdrożenia</li>
-                  <li>• prosty system do monitorowania efektów</li>
-                </ul>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.03] p-6">
-                  <div className="text-[11px] uppercase tracking-[0.35em] text-white/45">Czas</div>
-                  <div className="mt-3 text-3xl font-semibold text-white">7 dni</div>
-                  <div className="mt-2 text-sm text-white/64">od diagnozy do planu działań</div>
-                </div>
-                <div className="rounded-[1.4rem] border border-white/8 bg-white/[0.03] p-6">
-                  <div className="text-[11px] uppercase tracking-[0.35em] text-white/45">Wynik</div>
-                  <div className="mt-3 text-3xl font-semibold text-white">Jasny</div>
-                  <div className="mt-2 text-sm text-white/64">zamiast ogólnych rekomendacji</div>
-                </div>
-              </div>
-            </div>
+        <div className="overflow-hidden lg:max-h-[77vh]">
+          <div className="relative min-h-[55vh] overflow-hidden bg-black/40 lg:h-[77vh] lg:max-h-[75vh]">
+            <Image
+              src="/kobieta.jpg"
+              alt="Kobieta"
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,1)_0%,rgba(5,5,5,0.95)_10%,rgba(5,5,5,0.85)_20%,rgba(5,5,5,0.58)_40%,rgba(5,5,5,0.2)_66%,rgba(5,5,5,0)_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_28%,rgba(255,255,255,0.08),transparent_22%),linear-gradient(180deg,transparent,rgba(0,0,0,0.18))]" />
           </div>
         </div>
       </div>
