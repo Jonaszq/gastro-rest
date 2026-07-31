@@ -86,22 +86,6 @@ export function PageAnimations() {
         .from("[data-hero-highlights] > *", { opacity: 0, y: 12, stagger: 0.08 }, "-=0.5")
         .from("[data-hero-panel]", { opacity: 0, y: 28, scale: 0.985 }, "-=0.9");
 
-      gsap.utils.toArray<HTMLElement>("[data-section-reveal]").forEach((section) => {
-        gsap.fromTo(
-          section,
-          { y: 32, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.9,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 84%",
-            },
-          },
-        );
-      });
     });
 
     return () => {

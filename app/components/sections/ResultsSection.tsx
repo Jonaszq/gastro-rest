@@ -1,8 +1,35 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { results } from "../site-data";
 
 export function ResultsSection() {
+  const ref = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    gsap.registerPlugin(ScrollTrigger);
+    const el = ref.current;
+
+    const ctx = gsap.context(() => {
+      gsap.from(el.querySelectorAll(".grid > *"), {
+        scale: 0.9,
+        y: 30,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 1,
+        ease: "back.out(1.2)",
+        scrollTrigger: { trigger: el, start: "top 92%", toggleActions: "play none none none" },
+      });
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="wyniki" data-section-reveal className="border-t border-white/10 py-14">
+    <section ref={ref} id="wyniki" data-section-reveal className="border-t border-white/10 py-14">
       <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0.03))] p-7 sm:p-10">
         <div className="mb-8 flex items-end justify-between gap-6">
           <div>

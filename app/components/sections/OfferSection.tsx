@@ -1,8 +1,35 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { pillars } from "../site-data";
 
 export function OfferSection() {
+  const ref = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    gsap.registerPlugin(ScrollTrigger);
+    const el = ref.current;
+
+    const ctx = gsap.context(() => {
+      gsap.from(el.querySelectorAll("h2, .grid > *"), {
+        y: 40,
+        scale: 0.9,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 1,
+        ease: "back.out(1.15)",
+        scrollTrigger: { trigger: el, start: "top 92%", toggleActions: "play none none none" },
+      });
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="oferta" data-section-reveal className="border-t border-white/10 py-14">
+    <section ref={ref} id="oferta" data-section-reveal className="border-t border-white/10 py-14">
       <div className="mb-8 flex items-end justify-between gap-6">
     <div className="flex items-center gap-4">
       <h2 className="text-3xl tracking-[-0.04em] text-white sm:text-4xl">

@@ -1,6 +1,34 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 export function ContactSection() {
+  const ref = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    gsap.registerPlugin(ScrollTrigger);
+    const el = ref.current;
+
+    const ctx = gsap.context(() => {
+      gsap.from(el.querySelectorAll("p, h2, a"), {
+        y: 38,
+        scale: 0.92,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.95,
+        ease: "back.out(1.1)",
+        scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none none" },
+      });
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="kontakt" data-section-reveal className="border-t border-white/10 py-14">
+    <section ref={ref} id="kontakt" data-section-reveal className="border-t border-white/10 py-14">
       <div className="flex flex-col gap-6 rounded-[2rem] border border-white/10 bg-white/[0.04] p-7 lg:flex-row lg:items-center lg:justify-between lg:p-10">
         <div>
           <p className="text-[11px] uppercase tracking-[0.4em] text-white/45">Gotowy na zmianę?</p>

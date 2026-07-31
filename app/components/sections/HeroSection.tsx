@@ -1,12 +1,57 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import { LogoMark } from "../BrandLogo";
 import { heroHighlights } from "../site-data";
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { duration: 0.9, ease: "power3.out" } });
+
+      const badge = sectionRef.current!.querySelector('[data-hero-badge]');
+      const title = sectionRef.current!.querySelector('[data-hero-title]');
+      const copy = sectionRef.current!.querySelector('[data-hero-copy]');
+      const actions = sectionRef.current!.querySelectorAll('[data-hero-actions] a');
+      const highlights = sectionRef.current!.querySelectorAll('[data-hero-highlights] > *');
+      const panel = sectionRef.current!.querySelector('[data-hero-panel]');
+      const mark = sectionRef.current!.querySelector(':scope > .hero-watermark, [data-hero-mark]');
+
+      // Watermark/logo: subtle scale and fade
+      tl.from(mark, { scale: 0.7, opacity: 0, rotate: 6, duration: 1.4, ease: "back.out(1.4)" }, 0);
+
+      // Badge: pop + fade
+      tl.from(badge, { y: 28, scale: 0.85, opacity: 0, transformOrigin: "left center", duration: 0.9, ease: "back.out(1.1)" }, 0.12);
+
+      // Title: split reveal (line by line) - slide up
+      tl.from(title, { y: 48, opacity: 0, stagger: 0.1, duration: 1.0, ease: "power4.out" }, 0.2);
+
+      // Copy: fade + slight x shift
+      tl.from(copy, { x: -20, opacity: 0, duration: 0.9, ease: "power3.out" }, 0.35);
+
+      // Actions/buttons: pop with stagger and rotation
+      tl.from(actions, { scale: 0.86, opacity: 0, rotate: -6, stagger: 0.1, duration: 0.9, ease: "back.out(1.2)" }, 0.45);
+
+      // Highlights: staggered upward reveal
+      tl.from(highlights, { y: 28, opacity: 0, stagger: 0.08, ease: "back.out(1.1)", duration: 0.9 }, 0.55);
+
+      // Panel image: slow scale in
+      tl.from(panel, { scale: 1.12, opacity: 0, duration: 1.4, ease: "power3.out" }, 0.2);
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="o-nas" className="relative grid gap-10 py-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch lg:py-10">
-      <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center px-6">
-        <LogoMark className="select-none text-white/12 drop-shadow-[0_0_80px_rgba(255,255,255,0.22)] h-[22vh] w-[22vh] min-h-[180px] min-w-[180px] max-h-[380px] max-w-[380px]" />
+    <section ref={sectionRef} id="o-nas" className="relative grid gap-10 py-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch lg:py-10">
+      <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center px-6 hero-watermark" data-hero-mark>
+        <LogoMark className="select-none text-white/12 drop-shadow-[0_0_80px_rgba(255,255,255,0.22)] h-[40vh] w-[80vh] min-h-[220px] min-w-[220px] max-h-[640px] max-w-[640px]" />
       </div>
 
       <div className="relative z-10 max-w-3xl pt-2 lg:pt-8">

@@ -1,4 +1,4 @@
-import { AuditSection } from "./components/sections/AuditSection";
+import { AuditSection } from "@/app/components/sections/AuditSection";
 import { ContactSection } from "./components/sections/ContactSection";
 import { PageAnimations } from "./components/PageAnimations";
 import { HeaderSection } from "./components/sections/HeaderSection";
