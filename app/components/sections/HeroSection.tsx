@@ -99,19 +99,19 @@ export function HeroSection() {
       </div>
 
       <div data-hero-panel className="relative z-10 pt-2 lg:pt-0 lg:self-stretch lg:max-h-[77vh]">
-        <div className="absolute inset-0 -z-10 rounded-[2rem] bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.2),transparent_24%),radial-gradient(circle_at_80%_40%,rgba(255,255,255,0.08),transparent_20%),linear-gradient(135deg,rgba(255,255,255,0.09),rgba(255,255,255,0.02))] opacity-90 blur-3xl" />
-        <div className="overflow-hidden lg:max-h-[77vh]">
-          <div className="relative min-h-[55vh] overflow-hidden bg-black/40 lg:h-[77vh] lg:max-h-[75vh]">
+        <div className="absolute inset-0 -z-10 rounded-[2rem] bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.14),transparent_24%),radial-gradient(circle_at_80%_40%,rgba(255,255,255,0.06),transparent_20%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] opacity-80 blur-2xl" />
+        <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/25 lg:max-h-[77vh]">
+          <div className="relative min-h-[55vh] overflow-hidden bg-black/20 lg:h-[77vh] lg:max-h-[75vh]">
             <Image
               src="/kobieta.jpg"
               alt="Kobieta"
               fill
               priority
-              className="object-cover object-center"
+              className="object-contain object-center lg:object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,1)_0%,rgba(5,5,5,0.95)_10%,rgba(5,5,5,0.85)_20%,rgba(5,5,5,0.58)_40%,rgba(5,5,5,0.2)_66%,rgba(5,5,5,0)_100%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_28%,rgba(255,255,255,0.08),transparent_22%),linear-gradient(180deg,transparent,rgba(0,0,0,0.18))]" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.55)_0%,rgba(5,5,5,0.35)_18%,rgba(5,5,5,0.15)_42%,rgba(5,5,5,0.02)_72%,rgba(5,5,5,0)_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_28%,rgba(255,255,255,0.04),transparent_22%),linear-gradient(180deg,transparent,rgba(0,0,0,0.08))]" />
           </div>
         </div>
       </div>
