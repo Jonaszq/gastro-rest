@@ -3,6 +3,8 @@ type BrandLogoProps = {
   className?: string;
 };
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export function BrandLogo({ variant = "horizontal", className = "" }: BrandLogoProps) {
   if (variant === "stacked") {
     return (
@@ -30,5 +32,5 @@ export function LogoMark({ className = "" }: { className?: string }) {
   // Use a static image from /public as the logo mark so it's easy to swap
   // the graphic without changing SVG paths. The file `public/file.svg`
   // is used by default — replace it with your preferred logo.
-  return <img src="/file.png" alt="GASTRO REST" className={className} />;
+  return <img src={`${basePath}/file.png`} alt="GASTRO REST" className={className} />;
 }

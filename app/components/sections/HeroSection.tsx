@@ -8,6 +8,7 @@ import { heroHighlights } from "../site-data";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -103,7 +104,7 @@ export function HeroSection() {
         <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/25 lg:max-h-[77vh]">
           <div className="relative min-h-[55vh] overflow-hidden bg-black/20 lg:h-[77vh] lg:max-h-[75vh]">
             <Image
-              src="/kobieta.jpg"
+              src={`${basePath}/kobieta.jpg`}
               alt="Kobieta"
               fill
               priority
